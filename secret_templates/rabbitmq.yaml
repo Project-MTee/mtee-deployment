@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: rabbitmq
+stringData:
+  username: user  # TODO
+  password: pass  # TODO
+type: kubernetes.io/basic-auth

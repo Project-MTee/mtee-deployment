@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql
+stringData:
+  username: "root"
+  password: "pass" # todo
+type: kubernetes.io/basic-auth
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-filetranslation
+stringData:
+  username: "filetranslation"
+  password: "pass" # todo
+type: kubernetes.io/basic-auth
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mysql-asr
+stringData:
+  username: "speech_to_text"
+  password: "pass" # todo
+type: kubernetes.io/basic-auth

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: file-translation-worker
+spec:
+  selector:
+    matchLabels:
+      app: file-translation-worker
+  template:
+    metadata:
+      labels:
+        app: file-translation-worker
+    spec:
+      containers:
+        - name: file-translation-worker
+          image: ghcr.io/project-mtee/file-translation-worker:latest
+          env:
+            - name: RABBITMQ_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq
+            - name: RABBITMQ_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq
+            - name: RABBITMQ_HOST
+              value: $(RABBITMQ_SERVICE_HOST)
+            - name: RABBITMQ_PORT
+              value: $(RABBITMQ_SERVICE_PORT)
+            - name: FILE_TRANSLATION_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: translation-api
+                  name: hosts
+            - name: FILE_TRANSLATION_SERVICE_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: file-service
+            - name: FILE_TRANSLATION_SERVICE_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: file-service
+            - name: TRANSLATION_API_SERVICE_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: translation-api
+                  name: hosts
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 80
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 80
+            initialDelaySeconds: 10

@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grammar-worker
+spec:
+  selector:
+    matchLabels:
+      app: grammar-worker
+  template:
+    metadata:
+      labels:
+        app: grammar-worker
+    spec:
+      containers:
+        - name: grammar-worker
+          image: ghcr.io/tartunlp/grammar-worker:latest
+          env:
+            - name: MQ_HOST
+              value: $(RABBITMQ_SERVICE_HOST)
+            - name: MQ_PORT
+              value: $(RABBITMQ_SERVICE_PORT)
+            - name: MQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq
+            - name: MKL_NUM_THREADS
+              value: "16"
+          resources:
+            requests:
+              memory: "6G"
+              cpu: "16.0"

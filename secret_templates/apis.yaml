@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: file-service
+stringData:
+  username: "user" # todo
+  password: "pass" # todo
+type: kubernetes.io/basic-auth
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: asr
+stringData:
+  username: "user" # todo
+  password: "pass" # todo
+type: kubernetes.io/basic-auth

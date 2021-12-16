@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+spec:
+  selector:
+    matchLabels:
+      app: mysql
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mysql
+            - name: FILE_TRANSLATION_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: mysql-filetranslation
+            - name: FILE_TRANSLATION_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mysql-filetranslation
+            - name: FILE_TRANSLATION_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: filetranslation
+                  name: databases
+            - name: ASR_USER
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: mysql-asr
+            - name: ASR_PASS
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: mysql-asr
+            - name: ASR_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  key: asr
+                  name: databases
+          ports:
+            - containerPort: 3306
+          volumeMounts:
+            - mountPath: /docker-entrypoint-initdb.d
+              name: mysql-initdb
+      volumes:
+        - name: mysql-initdb
+          configMap:
+            name: initdb
+        - name: mysql-storage
+          persistentVolumeClaim:
+            claimName: db-storage

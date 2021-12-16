@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: asr-worker
+spec:
+  selector:
+    matchLabels:
+      app: asr-worker
+  template:
+    metadata:
+      labels:
+        app: asr-worker
+    spec:
+      containers:
+        - name: asr-worker
+          image: ghcr.io/tartunlp/speech-to-text-worker:latest
+          env:
+            - name: MQ_HOST
+              value: $(RABBITMQ_SERVICE_HOST)
+            - name: MQ_PORT
+              value: $(RABBITMQ_SERVICE_PORT)
+            - name: MQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq
+            - name: API_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: asr-api
+                  name: hosts
+            - name: API_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: asr
+            - name: API_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: asr
+          volumeMounts:
+            - mountPath: /dev/shm
+              name: dshm
+          resources:
+            requests:
+              memory: "16G"
+              cpu: "4.0"
+      volumes:
+        - name: dshm
+          emptyDir:
+            medium: Memory

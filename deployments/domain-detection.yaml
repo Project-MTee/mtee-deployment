@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: domain-detection-worker
+spec:
+  selector:
+    matchLabels:
+      app: domain-detection-worker
+  template:
+    metadata:
+      labels:
+        app: domain-detection-worker
+    spec:
+      initContainers:
+        - name: init-model
+          image: ghcr.io/project-mtee/domain-detection-model:latest
+          command: [ 'sh', '-c',
+                     'cp -r /models/* /app/models/; chmod -R 777 /app/models' ]
+          volumeMounts:
+            - mountPath: /app/models
+              name: models
+      containers:
+        - name: domain-detection-worker
+          image: ghcr.io/project-mtee/domain-detection-worker:latest
+          env:
+            - name: MQ_HOST
+              value: $(RABBITMQ_SERVICE_HOST)
+            - name: MQ_PORT
+              value: $(RABBITMQ_SERVICE_PORT)
+            - name: MQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq
+            - name: MKL_NUM_THREADS
+              value: "8"
+          volumeMounts:
+            - mountPath: /app/models
+              name: models
+          resources:
+            requests:
+              memory: "6G"
+              cpu: "8.0"
+      volumes:
+        - name: models
+          emptyDir: { }

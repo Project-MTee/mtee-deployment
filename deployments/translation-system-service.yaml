@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: translation-system-api
+spec:
+  selector:
+    matchLabels:
+      app: translation-system-api
+  template:
+    metadata:
+      labels:
+        app: translation-system-api
+    spec:
+      containers:
+        - name: translation-system-api
+          image: ghcr.io/project-mtee/translation-system-service:latest
+          ports:
+            - containerPort: 80
+          livenessProbe:
+            httpGet:
+              path: /health/live
+              port: 80
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/ready
+              port: 80
+            initialDelaySeconds: 10

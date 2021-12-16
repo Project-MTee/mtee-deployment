@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: databases
+data:
+  filetranslation: "filetranslation"
+  asr: "speech_to_text"
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: initdb
+data:
+  init-filetranslation.sh: |-
+    #!/bin/bash
+
+    mysql -u root -p$MYSQL_ROOT_PASSWORD -e \
+    "CREATE USER '$FILE_TRANSLATION_USER'@'%' IDENTIFIED WITH mysql_native_password BY '$FILE_TRANSLATION_PASS';
+    CREATE DATABASE IF NOT EXISTS $FILE_TRANSLATION_DATABASE;
+    GRANT ALL PRIVILEGES ON $FILE_TRANSLATION_DATABASE.* TO '$FILE_TRANSLATION_USER'@'%';"
+  init-asr.sh: |-
+    #!/bin/bash
+
+    mysql -u root -p$MYSQL_ROOT_PASSWORD -e \
+    "CREATE USER '$ASR_USER'@'%' IDENTIFIED WITH mysql_native_password BY '$ASR_PASS';
+    CREATE DATABASE IF NOT EXISTS $ASR_DATABASE;
+    GRANT ALL PRIVILEGES ON $ASR_DATABASE.* TO '$ASR_USER'@'%';"

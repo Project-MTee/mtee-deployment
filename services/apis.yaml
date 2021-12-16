@@ -1,0 +1,64 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: file-translation-service
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: file-translation-service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: translation-api
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: translation-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: translation-system
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: translation-system-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: asr-service
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: asr-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grammar-service
+spec:
+  ports:
+    - name: http
+      protocol: "TCP"
+      port: 80
+      targetPort: 80
+  selector:
+    app: grammar-api

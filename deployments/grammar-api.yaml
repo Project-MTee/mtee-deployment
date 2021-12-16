@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grammar-api
+spec:
+  selector:
+    matchLabels:
+      app: grammar-api
+  template:
+    metadata:
+      labels:
+        app: grammar-api
+    spec:
+      containers:
+        - name: grammar-api
+          image: ghcr.io/tartunlp/grammar-api:latest
+          env:
+            - name: MQ_HOST
+              value: $(RABBITMQ_SERVICE_HOST)
+            - name: MQ_PORT
+              value: $(RABBITMQ_SERVICE_PORT)
+            - name: MQ_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  key: username
+                  name: rabbitmq
+            - name: MQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  key: password
+                  name: rabbitmq
+          args: [
+              "--log-config", "logging/logging.ini",
+              '--root-path', '/api/grammar'
+          ]
+          ports:
+            - containerPort: 80
