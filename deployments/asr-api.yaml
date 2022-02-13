@@ -39,8 +39,6 @@ spec:
                 secretKeyRef:
                   key: password
                   name: asr
-            - name: ENDPOINT_PATH
-              value: /api/speech-to-text
             - name: MYSQL_HOST
               value: $(MYSQL_SERVICE_HOST)
             - name: MYSQL_PORT
@@ -60,11 +58,22 @@ spec:
                 configMapKeyRef:
                   key: asr
                   name: databases
+          args: [
+              "--log-config", "logging/logging.ini",
+              '--root-path', '/api/speech-to-text'
+          ]
           ports:
             - containerPort: 80
           volumeMounts:
             - mountPath: /app/data
               name: asr-storage
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "1.0"
+            limits:
+              memory: "256Mi"
+              cpu: "1.0"
       volumes:
         - name: asr-storage
           persistentVolumeClaim:

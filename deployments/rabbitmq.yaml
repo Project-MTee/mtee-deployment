@@ -26,3 +26,10 @@ spec:
                 secretKeyRef:
                   key: password
                   name: rabbitmq
+          resources:
+            requests:
+              memory: "2G"
+              cpu: "2.0"
+            limits:
+              memory: "2G"
+              cpu: "2.0"

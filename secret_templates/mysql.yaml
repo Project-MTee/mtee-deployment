@@ -4,7 +4,7 @@ metadata:
   name: mysql
 stringData:
   username: "root"
-  password: "pass" # todo
+  password: "pass" # TODO
 type: kubernetes.io/basic-auth
 ---
 apiVersion: v1
@@ -13,7 +13,7 @@ metadata:
   name: mysql-filetranslation
 stringData:
   username: "filetranslation"
-  password: "pass" # todo
+  password: "pass" # TODO
 type: kubernetes.io/basic-auth
 ---
 apiVersion: v1
@@ -22,5 +22,5 @@ metadata:
   name: mysql-asr
 stringData:
   username: "speech_to_text"
-  password: "pass" # todo
+  password: "pass" # TODO
 type: kubernetes.io/basic-auth

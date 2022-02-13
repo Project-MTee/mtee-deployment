@@ -51,6 +51,9 @@ spec:
             requests:
               memory: "16G"
               cpu: "4.0"
+            limits:
+              memory: "16G"
+              cpu: "4.0"
       volumes:
         - name: dshm
           emptyDir:

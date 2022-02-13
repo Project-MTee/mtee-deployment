@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: mysql
-          image: mysql:latest
+          image: mysql:8
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:
@@ -55,10 +55,14 @@ spec:
           volumeMounts:
             - mountPath: /docker-entrypoint-initdb.d
               name: mysql-initdb
+          resources:
+            requests:
+              memory: "2G"
+              cpu: "2.0"
+            limits:
+              memory: "2G"
+              cpu: "2.0"
       volumes:
         - name: mysql-initdb
           configMap:
             name: initdb
-        - name: mysql-storage
-          persistentVolumeClaim:
-            claimName: db-storage

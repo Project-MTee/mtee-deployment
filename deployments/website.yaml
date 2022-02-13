@@ -16,3 +16,10 @@ spec:
           image: ghcr.io/project-mtee/website:latest
           ports:
             - containerPort: 80
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "1"
+            limits:
+              memory: "512Mi"
+              cpu: "1"

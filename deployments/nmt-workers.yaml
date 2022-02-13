@@ -44,7 +44,10 @@ spec:
               name: models
           resources:
             requests:
-              memory: "6G"
+              memory: "8G"
+              cpu: "16.0"
+            limits:
+              memory: "8G"
               cpu: "16.0"
       volumes:
         - name: models
@@ -96,7 +99,10 @@ spec:
               name: models
           resources:
             requests:
-              memory: "6G"
+              memory: "8G"
+              cpu: "16.0"
+            limits:
+              memory: "8G"
               cpu: "16.0"
       volumes:
         - name: models
@@ -148,7 +154,10 @@ spec:
               name: models
           resources:
             requests:
-              memory: "6G"
+              memory: "8G"
+              cpu: "16.0"
+            limits:
+              memory: "8G"
               cpu: "16.0"
       volumes:
         - name: models
@@ -200,7 +209,10 @@ spec:
               name: models
           resources:
             requests:
-              memory: "6G"
+              memory: "8G"
+              cpu: "16.0"
+            limits:
+              memory: "8G"
               cpu: "16.0"
       volumes:
         - name: models

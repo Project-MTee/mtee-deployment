@@ -59,3 +59,10 @@ spec:
               path: /health/ready
               port: 80
             initialDelaySeconds: 10
+          resources:
+            requests:
+              memory: "2G"
+              cpu: "4.0"
+            limits:
+              memory: "2G"
+              cpu: "4.0"
