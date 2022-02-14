@@ -41,4 +41,3 @@ spec:
               cpu: "1.0"
             limits:
               memory: "128Mi"
-              cpu: "1.0"

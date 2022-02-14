@@ -48,7 +48,6 @@ spec:
               cpu: "16.0"
             limits:
               memory: "6G"
-              cpu: "16.0"
       volumes:
         - name: models
           emptyDir: { }

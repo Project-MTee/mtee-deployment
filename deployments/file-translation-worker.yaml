@@ -65,4 +65,3 @@ spec:
               cpu: "4.0"
             limits:
               memory: "2G"
-              cpu: "4.0"

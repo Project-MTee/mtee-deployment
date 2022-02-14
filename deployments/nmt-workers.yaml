@@ -48,7 +48,6 @@ spec:
               cpu: "16.0"
             limits:
               memory: "8G"
-              cpu: "16.0"
       volumes:
         - name: models
           emptyDir: { }
@@ -103,7 +102,6 @@ spec:
               cpu: "16.0"
             limits:
               memory: "8G"
-              cpu: "16.0"
       volumes:
         - name: models
           emptyDir: { }
@@ -158,7 +156,6 @@ spec:
               cpu: "16.0"
             limits:
               memory: "8G"
-              cpu: "16.0"
       volumes:
         - name: models
           emptyDir: { }
@@ -213,7 +210,6 @@ spec:
               cpu: "16.0"
             limits:
               memory: "8G"
-              cpu: "16.0"
       volumes:
         - name: models
           emptyDir: { }

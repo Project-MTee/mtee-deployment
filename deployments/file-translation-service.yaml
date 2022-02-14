@@ -88,7 +88,6 @@ spec:
               cpu: "1.0"
             limits:
               memory: "256Mi"
-              cpu: "1.0"
       volumes:
         - name: file-service-storage
           persistentVolumeClaim:
