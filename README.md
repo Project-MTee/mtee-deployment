@@ -38,7 +38,6 @@ has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to 
 purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) and enabling the 
 [ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/#minikube) should be sufficient.
 
-- In case a namespace other than `default` is used, add the `metadata.namespace` value to each configuration file.
 - Create a new `secrets` directory from the template files found in the `secret_templates` directory.
 - Check all files for any lines commented with `# TODO` as those lines refer to configuration that is likely different
   for different deployments.
@@ -53,6 +52,7 @@ purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) and en
 This should be sufficient to have the application running. However, there are other configuration aspects that may be
 relevant depending on the deployment requirements:
 
+- In case a namespace other than `default` is used, adding the `metadata.namespace` value to each configuration file.
 - Configuring separate users for each application connecting to RabbitMQ.
 - Configuring additional replicas and revising resource limits/requirements for each component depending on the expected
   workload.
