@@ -34,7 +34,8 @@ This sample requires an existing Kubernetes cluster with
 the [NGINX ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) where the application can be deployed
 to. For more information about setting up a cluster, please
 see [Kubernetes documentation](https://kubernetes.io/docs/setup/). We also assume that the user
-has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to the cluster.
+has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to the cluster. For testing or development 
+purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) should be sufficient.
 
 - In case a namespace other than `default` is used, add the `metadata.namespace` value to each configuration file.
 - Create a new `secrets` directory from the template files found in the `secret_templates` directory.
