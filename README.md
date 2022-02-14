@@ -43,9 +43,9 @@ has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to 
 - Apply configuration files using the command `kubectl create -f $filename`. Configuration files can be added in the
   following order to avoid any dependency conflicts.
     - All files in `secrets/`, `configuration/` and `storage/` directories
+    - All files in `services`
     - `deployments/rabbitmq.yaml` and `deployments/mysql.yaml`
     - All other files in `deployments/`
-    - All files in `services`
     - `ingress.yaml`
 
 This should be sufficient to have the application running. However, there are other configuration aspects that may be
