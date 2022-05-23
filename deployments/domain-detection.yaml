@@ -13,7 +13,7 @@ spec:
     spec:
       initContainers:
         - name: init-model
-          image: ghcr.io/project-mtee/domain-detection-model:latest
+          image: ghcr.io/project-mtee/domain-detection-model:latest  # TODO
           command: [ 'sh', '-c',
                      'cp -r /models/* /app/models/; chmod -R 777 /app/models' ]
           volumeMounts:
@@ -21,7 +21,7 @@ spec:
               name: models
       containers:
         - name: domain-detection-worker
-          image: ghcr.io/project-mtee/domain-detection-worker:latest
+          image: ghcr.io/project-mtee/domain-detection-worker:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)

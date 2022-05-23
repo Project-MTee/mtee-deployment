@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: file-translation-worker
-          image: ghcr.io/project-mtee/file-translation-worker:latest
+          image: ghcr.io/project-mtee/file-translation-worker:latest  # TODO
           env:
             - name: RABBITMQ_USER
               valueFrom:
@@ -52,12 +52,12 @@ spec:
           livenessProbe:
             httpGet:
               path: /health/live
-              port: 80
+              port: 5000
             initialDelaySeconds: 10
           readinessProbe:
             httpGet:
               path: /health/ready
-              port: 80
+              port: 5000
             initialDelaySeconds: 10
           resources:
             requests:

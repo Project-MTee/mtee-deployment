@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: asr-api
-          image: ghcr.io/tartunlp/speech-to-text-api:latest
+          image: ghcr.io/tartunlp/speech-to-text-api:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)

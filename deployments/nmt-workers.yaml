@@ -21,7 +21,7 @@ spec:
               name: models
       containers:
         - name: translation-worker-multilingual-general
-          image: ghcr.io/project-mtee/translation-worker:latest
+          image: ghcr.io/project-mtee/translation-worker:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -75,7 +75,7 @@ spec:
               name: models
       containers:
         - name: translation-worker-multilingual-legal
-          image: ghcr.io/project-mtee/translation-worker:latest
+          image: ghcr.io/project-mtee/translation-worker:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -129,7 +129,7 @@ spec:
               name: models
       containers:
         - name: translation-worker-multilingual-crisis
-          image: ghcr.io/project-mtee/translation-worker:latest
+          image: ghcr.io/project-mtee/translation-worker:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -183,7 +183,7 @@ spec:
               name: models
       containers:
         - name: translation-worker-multilingual-military
-          image: ghcr.io/project-mtee/translation-worker:latest
+          image: ghcr.io/project-mtee/translation-worker:latest  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)

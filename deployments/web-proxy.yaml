@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: web-proxy
-          image: ghcr.io/project-mtee/web-proxy:latest
+          image: ghcr.io/project-mtee/web-proxy:latest  # TODO
           env:
             - name: AppConfiguration__Configuration__PublicUrl
               valueFrom:

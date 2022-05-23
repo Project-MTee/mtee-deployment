@@ -57,7 +57,7 @@ relevant depending on the deployment requirements:
 - Configuring additional replicas and revising resource limits/requirements for each component depending on the expected
   workload.
 - Configuring persistent storage for RabbitMQ and MySQL to ensure data persists after a restart.
-- Using a [RabbitMQ Kuberneter operator](https://kubernetes.github.io/ingress-nginx/deploy/) instead.
+- Using a [RabbitMQ Kubernetes operator](https://kubernetes.github.io/ingress-nginx/deploy/) instead.
 - Revising the persistent volume sizes for file translation and speech recognition file storage depending on expected
   workload.
 - Configuring maximum file upload size in the ingress configuration (`nginx.ingress.kubernetes.io/proxy-body-size`).

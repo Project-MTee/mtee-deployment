@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: translation-api
-          image: ghcr.io/project-mtee/translation-api-service:latest
+          image: ghcr.io/project-mtee/translation-api-service:latest  # TODO
           env:
             - name: Services__RabbitMQ__Host
               value: $(RABBITMQ_SERVICE_HOST)

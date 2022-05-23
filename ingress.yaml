@@ -59,3 +59,45 @@ spec:
                 name: website
                 port:
                   number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mtee-ingress-filetranslation
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-body-size: 30m  # TODO
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mt.cs.ut.ee  # TODO
+      http:
+        paths:
+          - path: /api/translate/(file.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: file-translation-service
+                port:
+                  number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: mtee-ingress-asr
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/proxy-body-size: 30m  # TODO
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mt.cs.ut.ee  # TODO
+      http:
+        paths:
+          - path: /api/speech-to-text/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: asr-service
+                port:
+                  number: 80

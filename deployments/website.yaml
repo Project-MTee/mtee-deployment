@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: website
-          image: ghcr.io/project-mtee/website:latest
+          image: ghcr.io/project-mtee/website:latest  # TODO
           ports:
             - containerPort: 80
           resources:
