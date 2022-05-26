@@ -61,4 +61,4 @@ relevant depending on the deployment requirements:
 - Revising the persistent volume sizes for file translation and speech recognition file storage depending on expected
   workload.
 - Configuring maximum file upload size in the ingress configuration (`nginx.ingress.kubernetes.io/proxy-body-size`).
-- Using specific known compatible image versions instead on `latest`. 
+- Using specific known compatible image versions instead of `latest`. 
