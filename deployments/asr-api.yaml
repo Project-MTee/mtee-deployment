@@ -59,11 +59,10 @@ spec:
                   key: asr
                   name: databases
           args: [
-              "--log-config", "logging/logging.ini",
               '--root-path', '/api/speech-to-text'
           ]
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           volumeMounts:
             - mountPath: /app/data
               name: asr-storage

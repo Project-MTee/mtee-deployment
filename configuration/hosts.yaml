@@ -5,4 +5,3 @@ metadata:
 data:
   website: "https://mt.cs.ut.ee"  # TODO
   translation-api: "https://mt.cs.ut.ee/api/translate"  # TODO
-  asr-api: "https://mt.cs.ut.ee/api/speech-to-text"  # TODO

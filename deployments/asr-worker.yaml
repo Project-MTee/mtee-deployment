@@ -30,10 +30,7 @@ spec:
                   key: password
                   name: rabbitmq
             - name: API_HOST
-              valueFrom:
-                configMapKeyRef:
-                  key: asr-api
-                  name: hosts
+              value: http://$(ASR_SERVICE_SERVICE_HOST):$(ASR_SERVICE_SERVICE_PORT)
             - name: API_USERNAME
               valueFrom:
                 secretKeyRef:
