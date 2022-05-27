@@ -61,10 +61,7 @@ spec:
             - name: Services__Database__ConnectionString
               value: server=$(DB_HOST);database=$(DB_NAME);uid=$(DB_USER);pwd=$(DB_PASSWORD)
             - name: Services__TranslationSystem__Url
-              valueFrom:
-                configMapKeyRef:
-                  key: translation-api
-                  name: hosts
+              value: http://$(TRANSLATION_SYSTEM_SERVICE_HOST)
           ports:
             - containerPort: 80
           volumeMounts:

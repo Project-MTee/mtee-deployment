@@ -30,10 +30,7 @@ spec:
             - name: RABBITMQ_PORT
               value: $(RABBITMQ_SERVICE_PORT)
             - name: FILE_TRANSLATION_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  key: translation-api
-                  name: hosts
+              value: http://$(FILE_TRANSLATION_SERVICE_SERVICE_HOST)
             - name: FILE_TRANSLATION_SERVICE_USER
               valueFrom:
                 secretKeyRef:
@@ -45,10 +42,7 @@ spec:
                   key: password
                   name: file-service
             - name: TRANSLATION_API_SERVICE_URL
-              valueFrom:
-                configMapKeyRef:
-                  key: translation-api
-                  name: hosts
+              value: http://$(TRANSLATION_API_SERVICE_HOST)
           livenessProbe:
             httpGet:
               path: /health/live
@@ -64,4 +58,4 @@ spec:
               memory: "2G"
               cpu: "4.0"
             limits:
-              memory: "2G"
+              memory: "2G"  # TODO: review

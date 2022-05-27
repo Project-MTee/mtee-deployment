@@ -24,25 +24,11 @@ spec:
                 name: grammar-service
                 port:
                   number: 80
-          - path: /api/speech-to-text/?(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: asr-service
-                port:
-                  number: 80
           - path: /api/translate/(text.*)
             pathType: Prefix
             backend:
               service:
                 name: translation-api
-                port:
-                  number: 80
-          - path: /api/translate/(file.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: file-translation-service
                 port:
                   number: 80
           - path: /api/translate/(languageDirection.*)
@@ -59,6 +45,9 @@ spec:
                 name: website
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - mt.cs.ut.ee  # TODO
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -80,6 +69,9 @@ spec:
                 name: file-translation-service
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - mt.cs.ut.ee  # TODO
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -101,3 +93,6 @@ spec:
                 name: asr-service
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - mt.cs.ut.ee  # TODO

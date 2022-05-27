@@ -4,4 +4,3 @@ metadata:
   name: hosts
 data:
   website: "https://mt.cs.ut.ee"  # TODO
-  translation-api: "https://mt.cs.ut.ee/api/translate"  # TODO

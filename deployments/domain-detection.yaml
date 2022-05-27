@@ -38,7 +38,7 @@ spec:
                   key: password
                   name: rabbitmq
             - name: MKL_NUM_THREADS
-              value: "8"
+              value: "16"
           volumeMounts:
             - mountPath: /app/models
               name: models
@@ -47,7 +47,7 @@ spec:
               memory: "6G"
               cpu: "16.0"
             limits:
-              memory: "6G"
+              memory: "6G"  # TODO: review
       volumes:
         - name: models
           emptyDir: { }
