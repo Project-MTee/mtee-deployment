@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: file-translation-worker
-          image: ghcr.io/project-mtee/file-translation-worker:latest  # TODO
+          image: ghcr.io/project-mtee/file-translation-worker:1.3.7  # TODO
           env:
             - name: RABBITMQ_USER
               valueFrom:
@@ -30,7 +30,7 @@ spec:
             - name: RABBITMQ_PORT
               value: $(RABBITMQ_SERVICE_PORT)
             - name: FILE_TRANSLATION_SERVICE_URL
-              value: http://$(FILE_TRANSLATION_SERVICE_SERVICE_HOST)
+              value: http://$(FILE_TRANSLATION_SERVICE_HOST)
             - name: FILE_TRANSLATION_SERVICE_USER
               valueFrom:
                 secretKeyRef:
@@ -55,7 +55,7 @@ spec:
             initialDelaySeconds: 10
           resources:
             requests:
-              memory: "2G"
+              memory: "4G"
               cpu: "4.0"
             limits:
-              memory: "2G"  # TODO: review
+              memory: "4G"

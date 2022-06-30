@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: file-translation-service
+  name: file-translation-api
 spec:
   selector:
     matchLabels:
-      app: file-translation-service
+      app: file-translation-api
   template:
     metadata:
       labels:
-        app: file-translation-service
+        app: file-translation-api
     spec:
       containers:
-        - name: file-translation-service
-          image: ghcr.io/project-mtee/file-translation-service:latest  # TODO
+        - name: file-translation-api
+          image: ghcr.io/project-mtee/file-translation-service:1.4.7  # TODO
           env:
             - name: Services__RabbitMQ__UserName
               valueFrom:

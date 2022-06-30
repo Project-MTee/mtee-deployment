@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clamav
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clamav
+  template:
+    metadata:
+      labels:
+        app: clamav
+    spec:
+      containers:
+        - name: clamav
+          image: clamav/clamav:0.105  # TODO
+          ports:
+            - containerPort: 3310
+          resources:
+            requests:
+              memory: "4G"
+              cpu: "1"
+            limits:
+              memory: "4G"

@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: asr-api
-          image: ghcr.io/tartunlp/speech-to-text-api:latest  # TODO
+          image: ghcr.io/tartunlp/speech-to-text-api:1.1.2   # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -72,6 +72,16 @@ spec:
               cpu: "1.0"
             limits:
               memory: "256Mi"
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8000
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8000
+            initialDelaySeconds: 10
       volumes:
         - name: asr-storage
           persistentVolumeClaim:

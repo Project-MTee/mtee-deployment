@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: file-translation-service
+  name: file-translation
 spec:
   ports:
     - name: http
@@ -9,7 +9,7 @@ spec:
       port: 80
       targetPort: 80
   selector:
-    app: file-translation-service
+    app: file-translation-api
 ---
 apiVersion: v1
 kind: Service
@@ -40,7 +40,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: asr-service
+  name: asr
 spec:
   ports:
     - name: http
@@ -53,7 +53,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: grammar-service
+  name: grammar
 spec:
   ports:
     - name: http

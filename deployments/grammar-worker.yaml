@@ -11,17 +11,9 @@ spec:
       labels:
         app: grammar-worker
     spec:
-      initContainers:
-        - name: init-model
-          image: ghcr.io/tartunlp/grammar-model:latest  # TODO
-          command: [ 'sh', '-c',
-                     'cp -r /models/* /app/models/; chmod -R 777 /app/models' ]
-          volumeMounts:
-            - mountPath: /app/models
-              name: models
       containers:
         - name: grammar-worker
-          image: ghcr.io/tartunlp/grammar-worker:latest  # TODO
+          image: ghcr.io/tartunlp/grammar-worker:1.1.1-et  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -39,15 +31,19 @@ spec:
                   name: rabbitmq
             - name: MKL_NUM_THREADS
               value: "16"
-          volumeMounts:
-            - mountPath: /app/models
-              name: models
           resources:
             requests:
               memory: "4G"
               cpu: "16.0"
             limits:
               memory: "4G"
-      volumes:
-        - name: models
-          emptyDir: { }
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8000
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8000
+            initialDelaySeconds: 10

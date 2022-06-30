@@ -13,6 +13,8 @@ The MTee platform consists of the following dockerized components:
 - Existing standard components
     - [RabbitMQ message broker](https://www.rabbitmq.com/)
     - [MySQL database](https://www.mysql.com/)
+    - [Clammit antivirus proxy](https://github.com/ifad/clammit)
+    - [ClamAV antivirus](https://www.clamav.net/)
 - Custom MTee components:
     - [Translation website](https://ghcr.io/project-mtee/website)
     - [Web translation proxy](https://ghcr.io/project-mtee/web-proxy)
@@ -34,8 +36,8 @@ This sample requires an existing Kubernetes cluster with
 the [NGINX ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/) where the application can be deployed
 to. For more information about setting up a cluster, please
 see [Kubernetes documentation](https://kubernetes.io/docs/setup/). We also assume that the user
-has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to the cluster. For testing or development 
-purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) and enabling the 
+has [kubectl](https://kubernetes.io/docs/tasks/tools/) configured to connect to the cluster. For testing or development
+purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) and enabling the
 [ingress controller](https://kubernetes.github.io/ingress-nginx/deploy/#minikube) should be sufficient.
 
 - Create a new `secrets` directory from the template files found in the `secret_templates` directory.
@@ -43,11 +45,10 @@ purposes, setting up [minikube](https://minikube.sigs.k8s.io/docs/start/) and en
   for different deployments.
 - Apply configuration files using the command `kubectl create -f $filename`. Configuration files can be added in the
   following order to avoid any dependency conflicts.
-    - All files in `secrets/`, `configuration/` and `storage/` directories
-    - All files in `services`
+    - All files in `secrets/`, `configuration/`, `storage/` and `services` directories
+    - All files in `ingresses`
     - `deployments/rabbitmq.yaml` and `deployments/mysql.yaml`
     - All other files in `deployments/`
-    - `ingress.yaml`
 
 This should be sufficient to have the application running. However, there are other configuration aspects that may be
 relevant depending on the deployment requirements:
@@ -60,5 +61,9 @@ relevant depending on the deployment requirements:
 - Using a [RabbitMQ Kubernetes operator](https://kubernetes.github.io/ingress-nginx/deploy/) instead.
 - Revising the persistent volume sizes for file translation and speech recognition file storage depending on expected
   workload.
-- Configuring maximum file upload size in the ingress configuration (`nginx.ingress.kubernetes.io/proxy-body-size`).
-- Using specific known compatible image versions instead of `latest`. 
+- Configuring ingress parameters:
+  - maximum file upload size (`nginx.ingress.kubernetes.io/proxy-body-size`)
+  - modify rate limits
+  - etc.
+- Reivew the version numbers of components. The version numbers used in this repository reflect the versions tested in
+  the https://mt.cs.ut.ee demo environment, however, newer versions are likely also compatible.

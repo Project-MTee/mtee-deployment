@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: grammar-api
-          image: ghcr.io/tartunlp/grammar-api:latest  # TODO
+          image: ghcr.io/tartunlp/grammar-api:1.1.2  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -39,4 +39,14 @@ spec:
               memory: "128Mi"
               cpu: "1.0"
             limits:
-              memory: "128Mi"  # TODO: review
+              memory: "128Mi"
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8000
+            initialDelaySeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8000
+            initialDelaySeconds: 10

@@ -14,7 +14,7 @@ spec:
       hostname: rabbitmq
       containers:
         - name: rabbitmq
-          image: rabbitmq:3.9
+          image: rabbitmq:3.9.30  # TODO
           env:
             - name: RABBITMQ_DEFAULT_USER
               valueFrom:
@@ -26,6 +26,8 @@ spec:
                 secretKeyRef:
                   key: password
                   name: rabbitmq
+          ports:
+            - containerPort: 5672
           resources:
             requests:
               memory: "2G"

@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: grammar
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/limit-rpm: "10"  # TODO
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: mt.cs.ut.ee  # TODO
+      http:
+        paths:
+          - path: /api/grammar/?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: grammar
+                port:
+                  number: 80
+  tls:
+    - hosts:
+        - mt.cs.ut.ee  # TODO

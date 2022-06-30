@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: asr-worker
-          image: ghcr.io/tartunlp/speech-to-text-worker:latest  # TODO
+          image: ghcr.io/tartunlp/speech-to-text-worker:1.1.1  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -30,7 +30,7 @@ spec:
                   key: password
                   name: rabbitmq
             - name: API_HOST
-              value: http://$(ASR_SERVICE_SERVICE_HOST)
+              value: http://$(ASR_SERVICE_HOST)
             - name: API_USERNAME
               valueFrom:
                 secretKeyRef:
@@ -41,6 +41,8 @@ spec:
                 secretKeyRef:
                   key: password
                   name: asr
+            - name: MKL_NUM_THREADS
+              value: "4"
           volumeMounts:
             - mountPath: /dev/shm
               name: dshm
@@ -50,6 +52,16 @@ spec:
               cpu: "4.0"
             limits:
               memory: "16G"
+          livenessProbe:
+            httpGet:
+              path: /health/liveness
+              port: 8000
+            initialDelaySeconds: 30
+          readinessProbe:
+            httpGet:
+              path: /health/readiness
+              port: 8000
+            initialDelaySeconds: 30
       volumes:
         - name: dshm
           emptyDir:

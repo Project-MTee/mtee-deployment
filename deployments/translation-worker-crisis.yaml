@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: domain-detection-worker
+  name: translation-worker-multilingual-crisis
 spec:
   selector:
     matchLabels:
-      app: domain-detection-worker
+      app: translation-worker-multilingual-crisis
   template:
     metadata:
       labels:
-        app: domain-detection-worker
+        app: translation-worker-multilingual-crisis
     spec:
       containers:
-        - name: domain-detection-worker
-          image: ghcr.io/project-mtee/domain-detection-worker:1.1.2-multilingual  # TODO
+        - name: translation-worker-multilingual-crisis
+          image: ghcr.io/project-mtee/translation-worker:1.1.1-modular-crisis  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
@@ -33,10 +33,10 @@ spec:
               value: "16"
           resources:
             requests:
-              memory: "6G"
+              memory: "8G"
               cpu: "16.0"
             limits:
-              memory: "6G"
+              memory: "8G"
           livenessProbe:
             httpGet:
               path: /health/liveness

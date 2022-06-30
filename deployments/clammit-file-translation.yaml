@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clammit-file-translation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: clammit-file-translation
+  template:
+    metadata:
+      labels:
+        app: clammit-file-translation
+    spec:
+      containers:
+        - name: clammit-file-translation
+          image: maxsivkov/clammit:latest  # TODO: latest is currently the only version that exists of this container
+          ports:
+            - containerPort: 8438
+          env:
+            - name: CLAMMIT_LISTEN
+              value: ":8438"
+            - name: CLAMMIT_CLAMD_URL
+              value: $(CLAMAV_PORT_3310_TCP)
+            - name: CLAMMIT_MEMORY_THRESHOLD
+              value: "31457280"
+            - name: CLAMMIT_THREADS
+              value: "2"
+            - name: CLAMMIT_APP_URL
+              value: http://$(FILE_TRANSLATION_SERVICE_HOST)
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "1"
+            limits:
+              memory: "256Mi"

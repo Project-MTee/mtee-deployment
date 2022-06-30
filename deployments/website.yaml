@@ -13,7 +13,10 @@ spec:
     spec:
       containers:
         - name: website
-          image: ghcr.io/project-mtee/website:latest  # TODO
+          image: ghcr.io/project-mtee/website:41643  # TODO
+          env:
+            - name: SANDBOX
+              value: allow-forms allow-same-origin
           ports:
             - containerPort: 80
           resources:
