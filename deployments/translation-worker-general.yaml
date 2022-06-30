@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: translation-worker-multilingual-general
-          image: ghcr.io/project-mtee/translation-worker:1.1.1-modular-general  # TODO
+          image: ghcr.io/project-mtee/translation-worker:1.1.2-modular-general  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
