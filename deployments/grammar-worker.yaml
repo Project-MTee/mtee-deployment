@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: grammar-worker
-          image: ghcr.io/tartunlp/grammar-worker:1.1.2-et  # TODO
+          image: ghcr.io/tartunlp/grammar-worker:1.2.0-et  # TODO
           env:
             - name: MQ_HOST
               value: $(RABBITMQ_SERVICE_HOST)
