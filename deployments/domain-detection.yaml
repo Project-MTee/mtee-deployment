@@ -32,11 +32,18 @@ spec:
             - name: MKL_NUM_THREADS
               value: "16"
           resources:
-            requests:
-              memory: "6G"
-              cpu: "16.0"
+#            requests:
+#              memory: "6G"
+#              cpu: "16.0"
             limits:
               memory: "6G"
+          volumeMounts:
+            - mountPath: /app/models/config.yaml
+              name: domain-detection-config
+              subPath: config.yaml
+            - mountPath: /app/domain_detection_worker/domain_detector.py
+              name: domain-detection-config
+              subPath: domain_detector.py
           livenessProbe:
             httpGet:
               path: /health/liveness
@@ -47,3 +54,7 @@ spec:
               path: /health/readiness
               port: 8000
             initialDelaySeconds: 30
+      volumes:
+        - name: domain-detection-config
+          configMap:
+            name: domain-detection-config

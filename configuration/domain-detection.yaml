@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: domain-detection-config
+data:
+  config.yaml: |-
+    huggingface: tartuNLP/mtee-domain-detection
+    model_root: models/tartuNLP/mtee-domain-detection
+    languages:
+      - et
+      - en
+      - ru
+      - de
+      - fi
+      - uk
+    labels:
+      0: general
+      1: crisis
+      2: legal
+      3: military
+    default_label_id: 0
+  domain_detector.py: |-
+    import logging
+    from typing import Dict
+    from .config import ModelConfig
+    from .schemas import Response, Request
+    
+    logger = logging.getLogger(__name__)
+    
+    
+    class DomainDetector:
+        labels: Dict[int, str]
+        def __init__(self, model_config: ModelConfig):
+            self.labels = model_config.labels
+            self.languages = model_config.languages
+            self.default_label = self.labels[model_config.default_label_id]
+            logger.info(f"Default label: {self.default_label}.")
+            
+        def process_request(self, request: Request) -> Response:
+            return Response(domain=self.default_label)
