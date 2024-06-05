@@ -1,0 +1,212 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: translation-systems
+data:
+  appsettings.json: |-
+    {
+      "Serilog": {
+        "MinimumLevel": {
+          "Default": "Information",
+          "Override": {
+            "Microsoft": "Warning",
+            "System": "Warning"
+          }
+        }
+      },
+      "AllowedHosts": "*",
+      "Configuration": {
+        "LanguageDirections": [
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "ru",
+            "Domain": "general"
+          },    
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "et",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "ru",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "et",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "ru",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "et",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "ru",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "et",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "en",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "et",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "en",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "et",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "en",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "et",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "en",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "et",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "de",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "de",
+            "TargetLanguage": "et",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "de",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "de",
+            "TargetLanguage": "et",
+            "Domain": "crisis"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "de",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "de",
+            "TargetLanguage": "et",
+            "Domain": "legal"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "de",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "de",
+            "TargetLanguage": "et",
+            "Domain": "military"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "fi",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "fi",
+            "TargetLanguage": "et",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "et",
+            "TargetLanguage": "uk",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "uk",
+            "TargetLanguage": "et",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "uk",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "uk",
+            "TargetLanguage": "ru",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "uk",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "uk",
+            "TargetLanguage": "en",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "de",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "de",
+            "TargetLanguage": "en",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "fi",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "fi",
+            "TargetLanguage": "en",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "en",
+            "TargetLanguage": "ru",
+            "Domain": "general"
+          },
+          {
+            "SourceLanguage": "ru",
+            "TargetLanguage": "en",
+            "Domain": "general"
+          }
+        ]
+      }
+    }
